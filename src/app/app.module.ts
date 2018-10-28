@@ -8,13 +8,17 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guards';
+import { CreateNoteComponent } from './create-note/create-note.component';
+import { EditNoteComponent } from './edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreateNoteComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,

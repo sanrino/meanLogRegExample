@@ -6,7 +6,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "/api";
+const apiUrl = "http://localhost:3000/api";
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +35,8 @@ export class ApiService {
     return body || { };
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get(apiUrl, httpOptions).pipe(
+  getNotes(id:string): Observable<any> {
+    return this.http.get(`${apiUrl}/note/${id}`;, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
@@ -56,19 +56,26 @@ export class ApiService {
       );
   }
 
-  /*updateUser(id: string, data): Observable<any> {
-    const url = `${apiUrl}/${id}`;
+  postNote(data): Observable<any> {
+    return this.http.post(apiUrl+'/note', data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  updateNote(id: string, data): Observable<any> {
+    const url = `${apiUrl}/note/${id}`;
     return this.http.put(url, data, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  deleteUser(id: string): Observable<{}> {
-    const url = `${apiUrl}/${id}`;
+  deleteNote(id: string): Observable<{}> {
+    const url = `${apiUrl}/note/${id}`;
     return this.http.delete(url, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
-  }*/
+  }
 }
