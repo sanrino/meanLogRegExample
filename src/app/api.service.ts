@@ -36,7 +36,7 @@ export class ApiService {
   }
 
   getNotes(id:string): Observable<any> {
-    return this.http.get(`${apiUrl}/note/${id}`;, httpOptions).pipe(
+    return this.http.get(`${apiUrl}/note/${id}`, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
